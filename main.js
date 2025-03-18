@@ -41,7 +41,7 @@ function getInfo(responseNumber) {
 
 
 document.addEventListener("keyup", k => {
-  let [q,c] = getInfo(rind);
+  let [q,c] = getInfo(RIND);
   switch(k.code) {
     case "KeyM":
       processMCQ(q,c);
