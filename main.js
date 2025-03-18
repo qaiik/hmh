@@ -19,12 +19,19 @@ function updateRIND() {
   window.RIND = Number(prompt("rind"))
 }
 
+function getULo(crid) {
+  document.getElementById(crid).querySelector(`.lrn_response_wrapper > .lrn_response > div:nth-child(3) > .lrn-response-validate-wrapper > ul`)
+}
+
+function getUL(crid) {
+  return Array.from(document.getElementsByClassName('lrn_mcqgroup lrn_mcqgroup-horizontal')).filter(n => n.parentNode.parentNode.innerHTML.includes(crid))[0]
+}
 function processMCQ(q, crid) {
     if (q.type !== "mcq") return
     // let crid = LearnosityAssess.getCurrentItem().response_ids[0]
     // let q = LearnosityAssess.getQuestions()[crid];
     let indices = q.validation.valid_response.value.map((n, i) => i);
-    let answerUl = document.querySelector(`#${crid} > div.lrn_response_wrapper > div.lrn_response.lrn_clearfix > div:nth-child(3) > div.lrn-response-validate-wrapper > ul`)
+    let answerUl = getUL(crid);
     let answerChildren = Array.from(answerUl.children);
 
     for (let i = 0; i < indices.length; i++) {
