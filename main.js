@@ -4,6 +4,17 @@
 //RIND == Response index
 //MCQ == Multiple Choice Question
 
+function visualize(jsonData) {
+    const stringifiedData = JSON.stringify(jsonData, null, 2); // Indented formatting for readability
+
+    const newTab = window.open('', '_blank', 'width=600,height=400');
+
+    newTab.document.write('<pre>' + stringifiedData + '</pre>');
+    newTab.document.close();
+}
+
+
+
 window.RIND = 0;
 let Utils = {
   getCRID: function(n) {
@@ -37,9 +48,9 @@ function processMCQ(q, crid) {
 
     for (let i = 0; i < indices.length; i++) {
         // answerChildren[i].firstChild.click()
-        answers.push(q.options[i].value)
+        answers.push(q.options[i].label)
     }
-  alert(JSON.stringify(answers))
+    visualize(JSON.stringify(answers))
 
     // LearnosityAssess.validateQuestions();
 }
