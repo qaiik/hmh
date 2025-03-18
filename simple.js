@@ -1,13 +1,26 @@
-let btn = $("#b5da036d-2fd6-498a-9953-48fcda5638cc_fc69fe5af2578d07cbec9ed81cb84eef > div.lrn_response_wrapper > div.lrn_response.lrn_clearfix > button")
-let parent = btn.parentNode;
-let nn = btn.cloneNode(true);
-nn.firstChild.innerText = "Newcheck";
-nn.disabled = false;
+const newCheckElements = [];
 
-parent.removeChild(btn);
-parent.appendChild(nn);
+function modifyCheckElement(element) {
+    let parent = element.parentNode;
+    let nn = element.cloneNode(true);
+    nn.firstChild.innerText = "Modcheck";
+    nn.disabled = false;
+    //nn.firstChild.innerText = "Modcheck" --modifies the checks to show the hack worked, not useful if doing assignment at school
+  
+    parent.removeChild(element);
+    parent.appendChild(nn);
 
-nn.addEventListener('click', () => {
-  LearnosityAssess.validateQuestions();
-  nn.disabled = false;
-})
+    nn.addEventListener('click', () => {
+        LearnosityAssess.validateQuestions();
+    })
+  
+}
+
+function getChecks() {
+  return Array.from(document.querySelectorAll("button")).filter(n => n.className.includes("lrn_validate") && !n.className.includes("invisible") && n.className.includes("lds-btn-secondary"));
+}
+
+function main() {
+  const checks = getChecks();
+  checks.forEach(modifiyCheckElement);
+}
