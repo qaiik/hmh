@@ -30,15 +30,18 @@ function processMCQ(q, crid) {
     if (q.type !== "mcq") return
     // let crid = LearnosityAssess.getCurrentItem().response_ids[0]
     // let q = LearnosityAssess.getQuestions()[crid];
+    let answers = []
     let indices = q.validation.valid_response.value.map((n, i) => i);
     let answerUl = getUL(crid);
     let answerChildren = Array.from(answerUl.children);
 
     for (let i = 0; i < indices.length; i++) {
-        answerChildren[i].firstChild.click()
+        // answerChildren[i].firstChild.click()
+        answers.push(q.options[i].value)
     }
+  alert(JSON.stringify(answers))
 
-    LearnosityAssess.validateQuestions();
+    // LearnosityAssess.validateQuestions();
 }
 
 
