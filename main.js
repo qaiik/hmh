@@ -20,6 +20,7 @@ function updateRIND() {
 }
 
 function processMCQ(q, crid) {
+    if (q.type !== "mcq") return
     // let crid = LearnosityAssess.getCurrentItem().response_ids[0]
     // let q = LearnosityAssess.getQuestions()[crid];
     let indices = q.validation.valid_response.value.map((n, i) => i);
