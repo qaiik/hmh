@@ -8,7 +8,7 @@ function getTextChild(element) {
 function makeMutationObserver(element) {
     const observer = new MutationObserver((mutationsList) => {
         mutationsList.forEach((mutation) => {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'disabled' && element.disabled = true) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'disabled' && element.disabled == true) {
                element.disabled = false;
             }
         });
