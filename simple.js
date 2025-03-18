@@ -1,9 +1,13 @@
 const newCheckElements = [];
 
+function getTextChild(element) {
+    return Array.from(element.children).filter(n => !n.className)[0];
+};
+
 function modifyCheckElement(element) {
     let parent = element.parentNode;
     let nn = element.cloneNode(true);
-    nn.firstChild.innerText = "Modcheck";
+    getTextChild(nn).innerText = "Modcheck";
     nn.disabled = false;
     newCheckElements.push(nn);
     
