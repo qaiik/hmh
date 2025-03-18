@@ -4,6 +4,23 @@ function getTextChild(element) {
     return Array.from(element.children).filter(n => !n.className)[0];
 };
 
+
+function makeMutationObserver(element) {
+    const observer = new MutationObserver((mutationsList) => {
+        mutationsList.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'disabled' && element.disabled = true) {
+               element.disabled = false;
+            }
+        });
+    });
+
+
+    const config = {
+        attributes: true
+    };
+    observer.observe(element, config);
+}
+
 function modifyCheckElement(element) {
     let parent = element.parentNode;
     let nn = element.cloneNode(true);
@@ -28,6 +45,7 @@ function getChecks() {
 function main() {
   const checks = getChecks();
   checks.forEach(modifyCheckElement);
+  newCheckElements.forEach(makeMutationObserver);
 }
 
 main();
