@@ -5,8 +5,9 @@ function modifyCheckElement(element) {
     let nn = element.cloneNode(true);
     nn.firstChild.innerText = "Modcheck";
     nn.disabled = false;
+    newCheckElements.push(nn);
+    
     //nn.firstChild.innerText = "Modcheck" --modifies the checks to show the hack worked, not useful if doing assignment at school
-  
     parent.removeChild(element);
     parent.appendChild(nn);
 
@@ -24,3 +25,5 @@ function main() {
   const checks = getChecks();
   checks.forEach(modifyCheckElement);
 }
+
+main();
