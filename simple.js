@@ -22,5 +22,5 @@ function getChecks() {
 
 function main() {
   const checks = getChecks();
-  checks.forEach(modifiyCheckElement);
+  checks.forEach(modifyCheckElement);
 }
