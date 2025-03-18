@@ -4,15 +4,13 @@
 //RIND == Response index
 //MCQ == Multiple Choice Question
 
-function visualize(jsonData) {
+function visualize(raw) {
     // Stringify the JSON data
-    const stringifiedData = JSON.stringify(jsonData, null, 2); // Indented formatting for readability
-
     // Open a new tab
     const newTab = window.open('', '_blank');
 
     // Set the document's innerText to the stringified data
-    newTab.document.body.innerText = stringifiedData;
+    newTab.document.body.innerText = raw;
 }
 
 
@@ -46,19 +44,27 @@ function processMCQ(q, crid) {
     // let crid = LearnosityAssess.getCurrentItem().response_ids[0]
     // let q = LearnosityAssess.getQuestions()[crid];
     let answers = []
-    let indices = q.validation.valid_response.value.map((n, i) => i);
+    let indices = q.validation.valid_response.value.map(Number);
     let answerUl = getUL(crid);
     let answerChildren = Array.from(answerUl.children);
-
-    for (let i = 0; i < indices.length; i++) {
-        // answerChildren[i].firstChild.click()
+    indices.forEach(i => {
         answers.push(q.options[i].label)
-    }
-    visualize(JSON.stringify(answers))
+    })
+    
+    visualize(answers.join("\n"))
 
     // LearnosityAssess.validateQuestions();
 }
 
+function processN(q, crid) {
+    // let crid = LearnosityAssess.getCurrentItem().response_ids[0]
+    // let q = LearnosityAssess.getQuestions()[crid];
+    let answers = q.validation.valid_response.value.map(n => n[0].value)
+    
+    visualize(answers.join("\n"))
+
+    // LearnosityAssess.validateQuestions();
+}
 
 function getInfo(responseNumber) {
   const crid = Utils.getCRID(responseNumber);
@@ -71,5 +77,15 @@ document.addEventListener("keyup", k => {
   switch(k.code) {
     case "KeyM":
       processMCQ(q,c);
+      break
+    case "KeyN":
+        processN(q,c)
+        break
+    case "KeyV":
+          LearnosityAssess.validateQuestions();
+          break
+    case "KeyR":
+          updateRIND();
+          break
   }
 })
