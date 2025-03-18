@@ -5,13 +5,17 @@
 //MCQ == Multiple Choice Question
 
 function visualize(jsonData) {
+    // Stringify the JSON data
     const stringifiedData = JSON.stringify(jsonData, null, 2); // Indented formatting for readability
 
-    const newTab = window.open('', '_blank', 'width=600,height=400');
+    // Open a new tab
+    const newTab = window.open('', '_blank');
 
-    newTab.document.write('<pre>' + stringifiedData + '</pre>');
-    newTab.document.close();
+    // Set the document's innerText to the stringified data
+    newTab.document.body.innerText = stringifiedData;
 }
+
+
 
 
 
