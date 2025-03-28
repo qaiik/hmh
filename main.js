@@ -17,6 +17,10 @@ function visualize(raw) {
 
 
 
+const get1f = _ => LearnosityAssess.getCurrentItem().questions[0].validation.valid_response.value[0][0].value
+const get1 = _ => LearnosityAssess.getCurrentItem().questions[0].validation.valid_response.value[0].value
+const get2 = _ => LearnosityAssess.getCurrentItem().questions[1].validation.valid_response.value[0][0].value
+
 window.RIND = 0;
 let Utils = {
   getCRID: function(n) {
@@ -59,9 +63,11 @@ function processMCQ(q, crid) {
 function processN(q, crid) {
     // let crid = LearnosityAssess.getCurrentItem().response_ids[0]
     // let q = LearnosityAssess.getQuestions()[crid];
-    let answers = q.validation.valid_response.value.map(n => n[0].value)
-    
-    visualize(answers.join("\n"))
+    // let answers = q.validation.valid_response.value.map(n => n[0].value)
+    let answer;
+    if (window.RIND) answer = get2(); 
+    if (window.RIND == 0) answer = (get1() || get1f())
+    visualize(answer.join("\n"))
 
     // LearnosityAssess.validateQuestions();
 }
