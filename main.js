@@ -10,7 +10,8 @@ function visualize(raw) {
     const newTab = window.open('', '_blank');
 
     // Set the document's innerText to the stringified data
-    newTab.document.body.innerText = raw;
+    const pre = newTab.document.body.appendChild(document.createElement('pre'))
+    pre.innerText = raw;
 }
 
 
