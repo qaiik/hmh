@@ -18,10 +18,9 @@ function visualize(raw) {
 
 
 
-const get1f = _ => LearnosityAssess.getCurrentItem().questions[0].validation.valid_response.value[0][0].value
-const get1 = _ => LearnosityAssess.getCurrentItem().questions[0].validation.valid_response.value[0].value
-const get2 = _ => LearnosityAssess.getCurrentItem().questions[1].validation.valid_response.value[0][0].value
-
+const get1f = _ => LearnosityAssess.getCurrentItem().questions[0].validation.valid_response
+const get1 = _ => LearnosityAssess.getCurrentItem().questions[0].validation.valid_response
+const get2 = _ => LearnosityAssess.getCurrentItem().questions[1].validation.valid_response
 window.RIND = 0;
 let Utils = {
   getCRID: function(n) {
