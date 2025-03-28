@@ -68,7 +68,7 @@ function processN(q, crid) {
     let answer;
     if (window.RIND) answer = get2(); 
     if (window.RIND == 0) answer = (get1() || get1f())
-    visualize(answer.join("\n"))
+    visualize(JSON.stringify(answer, null, 2))
 
     // LearnosityAssess.validateQuestions();
 }
