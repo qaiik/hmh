@@ -87,7 +87,7 @@ document.addEventListener("keyup", k => {
     case "KeyN":
         processN(q,c)
         break
-    case "KeyV":
+    case "KeyC":
           LearnosityAssess.validateQuestions();
           break
     case "KeyR":
