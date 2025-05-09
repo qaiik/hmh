@@ -47,12 +47,17 @@ try {
 
         if (!isNative(addEventListener)) return;
         addEventListener('keyup', e => {
-            vj(LearnosityAssess.getCurrentItem().questions.map(q => {
-                return {
-                    validation: q.validation,
-                    options: q.options
-                }
-            }))
+            switch (e.code) {
+                case 'KeyN':
+                    vj(LearnosityAssess.getCurrentItem().questions.map(q => {
+                        return {
+                            validation: q.validation,
+                            options: q.options
+                        }
+                    }))
+                    break;
+            }
+
         })
     }();
 } catch {}
